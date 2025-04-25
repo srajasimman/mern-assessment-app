@@ -45,7 +45,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository }}/client:latest
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
+          cache-from: type=gha,scope=ghcr.io/${{ github.repository }}/client
           cache-to: type=gha,mode=max
 
       - name: Build and push server Docker image
@@ -56,5 +56,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository }}/server:latest
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
+          cache-from: type=gha,scope=ghcr.io/${{ github.repository }}/server
           cache-to: type=gha,mode=max

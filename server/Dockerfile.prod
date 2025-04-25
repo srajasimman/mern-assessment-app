@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
@@ -11,7 +11,7 @@ COPY . .
 
 # -----------------------------------------------
 # Production stage
-FROM node:16-alpine
+FROM node:20-alpine
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production

@@ -1,4 +1,4 @@
-version: '3'
+name: assessment-platform-dev
 
 services:
   # MongoDB Service

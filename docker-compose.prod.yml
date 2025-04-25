@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # MongoDB Service
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-prod
+    restart: always
+    volumes:
+      - mongodb-prod-data:/data/db
+    networks:
+      - assessment-prod-network
+    # No ports exposed to host in production for security
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+  # Node.js Server Service
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    container_name: assessment-server-prod
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/assessment-platform
+    depends_on:
+      - mongodb
+    networks:
+      - assessment-prod-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  # React Client Service with Nginx
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    container_name: assessment-client-prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - server
+    networks:
+      - assessment-prod-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  assessment-prod-network:
+    driver: bridge
+
+volumes:
+  mongodb-prod-data:
+    driver: local

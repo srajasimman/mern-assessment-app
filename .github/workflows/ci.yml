@@ -40,4 +40,4 @@ jobs:
         uses: docker/bake-action@v6
         with:
           source: ./docker-bake.hcl
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}

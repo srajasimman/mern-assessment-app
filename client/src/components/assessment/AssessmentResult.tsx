@@ -30,6 +30,8 @@ interface ResultData {
     answers: number[];
     score: number;
     submittedAt: string;
+    name?: string;
+    email?: string;
   };
   assessment: {
     title: string;
@@ -132,6 +134,18 @@ const AssessmentResult = () => {
         <Typography variant="body1" paragraph>
           {assessment.description}
         </Typography>
+
+        {/* Display Name and Email */}
+        {response.name && (
+          <Typography variant="h5" color="text.primary">
+            Name: {response.name}
+          </Typography>
+        )}
+        {response.email && (
+          <Typography variant="body2" color="text.secondary">
+            Email: {response.email}
+          </Typography>
+        )}
         
         <Box sx={{ 
           display: 'flex', 

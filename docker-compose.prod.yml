@@ -1,15 +1,15 @@
-name: assessment-platform-prod
+name: assessment-platform
 
 services:
   # MongoDB Service
   mongodb:
     image: mongo:latest
-    container_name: mongodb-prod
+    container_name: assessment-platform-mongodb
     restart: always
     volumes:
-      - mongodb-prod-data:/data/db
+      - mongodb-data:/data/db
     networks:
-      - assessment-prod-network
+      - assessment-platform-network
     # No ports exposed to host in production for security
     logging:
       driver: "json-file"
@@ -27,18 +27,19 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile.prod
-    container_name: assessment-server-prod
+    image: srajasimman/assessment-platform-server:latest
+    container_name: assessment-platform-server
     restart: always
     ports:
       - "5000:5000"
     environment:
       - NODE_ENV=production
       - PORT=5000
-      - MONGODB_URI=mongodb://mongodb:27017/assessment-platform
+      - MONGODB_URI=mongodb://assessment-platform-mongodb:27017/assessment-platform
     depends_on:
       - mongodb
     networks:
-      - assessment-prod-network
+      - assessment-platform-network
     logging:
       driver: "json-file"
       options:
@@ -55,7 +56,8 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile.prod
-    container_name: assessment-client-prod
+    image: srajasimman/assessment-platform-client:latest
+    container_name: assessment-platform-client
     restart: always
     ports:
       - "80:80"
@@ -63,7 +65,7 @@ services:
     depends_on:
       - server
     networks:
-      - assessment-prod-network
+      - assessment-platform-network
     logging:
       driver: "json-file"
       options:
@@ -76,9 +78,9 @@ services:
           memory: 256M
 
 networks:
-  assessment-prod-network:
+  assessment-platform-network:
     driver: bridge
 
 volumes:
-  mongodb-prod-data:
+  mongodb-data:
     driver: local

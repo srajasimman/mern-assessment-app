@@ -17,7 +17,7 @@ services:
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: assessment-server
     restart: always
     ports:
@@ -35,7 +35,7 @@ services:
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: assessment-client
     restart: always
     ports:

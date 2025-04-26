@@ -16,6 +16,15 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - Submit responses and view results immediately
 - See detailed feedback with correct and incorrect answers
 
+## Architecture
+
+This application follows a modern containerized architecture:
+
+- React SPA client served via Webpack (dev) or Nginx (prod)
+- Express.js backend with RESTful API endpoints
+- MongoDB database for persistent storage
+- Docker containers for both development and production environments
+
 ## Tech Stack
 
 - **Frontend**: React.js with TypeScript, Material UI
@@ -24,6 +33,8 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - **State Management**: React Hooks
 - **Routing**: React Router v6
 - **HTTP Client**: Axios
+- **Containerization**: Docker and Docker Compose
+- **Web Server**: Nginx (production)
 
 ## Getting Started
 
@@ -32,6 +43,7 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - Node.js (v14+)
 - npm or yarn
 - MongoDB (local instance or MongoDB Atlas)
+- Docker and Docker Compose (for containerized deployment)
 
 ### Installation
 
@@ -61,6 +73,8 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 
 ### Running the Application
 
+#### Local Development
+
 - Development mode (with hot reloading for both client and server):
   ```
   npm run dev
@@ -81,6 +95,74 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
   npm run client
   ```
 
+#### Docker Deployment
+
+##### Development Environment
+
+```bash
+# Start the development environment
+docker-compose -f docker-compose.dev.yml up
+
+# Stop the development environment
+docker-compose -f docker-compose.dev.yml down
+```
+
+##### Production Environment
+
+```bash
+# Start the production environment
+docker-compose -f docker-compose.prod.yml up -d
+
+# Stop the production environment
+docker-compose -f docker-compose.prod.yml down
+```
+
+##### Deployment Script
+
+For automated production deployment:
+
+```bash
+# Make the script executable
+chmod +x deploy-prod.sh
+
+# Run the deployment script
+./deploy-prod.sh
+```
+
+## Project Structure
+
+```
+assessment-platform/
+├── client/                   # React frontend
+│   ├── public/               # Static files
+│   ├── src/
+│   │   ├── components/       # React components
+│   │   │   ├── admin/        # Admin dashboard components
+│   │   │   ├── assessment/   # Assessment taking components
+│   │   │   └── layout/       # Layout components
+│   │   ├── services/         # API services
+│   │   ├── types/            # TypeScript type definitions
+│   │   └── App.tsx           # Main application component
+│   ├── Dockerfile.dev        # Development Docker configuration
+│   ├── Dockerfile.prod       # Production Docker configuration
+│   └── nginx.conf            # Nginx configuration for production
+│
+├── server/                   # Express backend
+│   ├── config/               # Server configuration
+│   ├── controllers/          # API controllers
+│   ├── middleware/           # Express middleware
+│   ├── models/               # Mongoose models
+│   ├── routes/               # API routes
+│   ├── Dockerfile.dev        # Development Docker configuration
+│   ├── Dockerfile.prod       # Production Docker configuration
+│   └── server.js             # Entry point
+│
+├── docker-compose.dev.yml    # Docker Compose for development
+├── docker-compose.prod.yml   # Docker Compose for production
+├── docker-bake.hcl           # Docker build configuration
+└── deploy-prod.sh            # Production deployment script
+```
+
 ## API Endpoints
 
 ### Assessments
@@ -95,6 +177,7 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - `POST /api/responses` - Submit response
 - `GET /api/responses/:id` - Get response by ID
 - `GET /api/responses/assessment/:assessmentId` - Get all responses for an assessment
+- `DELETE /api/responses/:id` - Delete response by ID
 
 ## Future Enhancements
 
@@ -103,7 +186,8 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 - Result exports (PDF/CSV)
 - Email notifications
 - Analytics dashboard
+- CI/CD pipeline integration
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE).

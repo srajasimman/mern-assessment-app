@@ -1,0 +1,12 @@
+# Set to true to add reviewers to pull requests
+addReviewers: true
+
+# list all the GitHub account usernames you want as reviewers
+reviewers: 
+  - srajasimman
+
+# set to 0 to ensure it assigns everyone listed above as reviewers (or specifiy a limit)
+numberOfReviewers: 0
+
+# Adds whoever is authoring the pull request as assignee
+addAssignees: author

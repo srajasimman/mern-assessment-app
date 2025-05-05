@@ -21,6 +21,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import HomeIcon from '@mui/icons-material/Home';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { getResponse } from '../../services/api';
 
 interface ResultData {
@@ -237,7 +239,7 @@ const AssessmentResult = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary={<Typography variant="subtitle1">Question {index + 1}</Typography>}
-                      secondary={question.text}
+                      secondary={<ReactMarkdown remarkPlugins={[remarkGfm]}>{question.text}</ReactMarkdown>}
                     />
                   </Box>
                   
@@ -255,7 +257,7 @@ const AssessmentResult = () => {
                           <Typography variant="body2">
                             {optionIndex === question.correctAnswerIndex && 
                               '✓ '}{optionIndex === userAnswer && !isCorrect && '✗ '}
-                            {option}
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{option}</ReactMarkdown>
                           </Typography>
                         </Paper>
                       </Grid>

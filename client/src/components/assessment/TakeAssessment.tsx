@@ -20,6 +20,8 @@ import {
   TextField
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { getAssessment, submitResponse } from '../../services/api';
 import { AssessmentForResponder } from '../../types';
 
@@ -270,9 +272,15 @@ const TakeAssessment = () => {
                 Question {currentQuestion + 1} of {assessment.questions.length}
               </Typography>
 
-              <Typography variant="body1" paragraph sx={{ fontWeight: 500, mb: 3 }}>
-                {currentQuestionObj.text}
-              </Typography>
+              <ReactMarkdown
+                children={currentQuestionObj.text}
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  p: ({ node, ...props }) => (
+                    <Typography variant="body1" paragraph sx={{ fontWeight: 500, mb: 3 }} {...props} />
+                  )
+                }}
+              />
 
               <FormControl component="fieldset" sx={{ width: '100%' }}>
                 <RadioGroup
@@ -284,7 +292,15 @@ const TakeAssessment = () => {
                       key={index}
                       value={index.toString()}
                       control={<Radio />}
-                      label={option}
+                      label={
+                        <ReactMarkdown
+                          children={option}
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            p: ({ node, ...props }) => <Typography variant="body1" {...props} />
+                          }}
+                        />
+                      }
                       sx={{
                         p: 1,
                         borderRadius: 1,

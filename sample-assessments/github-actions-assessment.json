@@ -1,0 +1,181 @@
+{
+  "title": "GitHub Actions DevOps Assessment",
+  "description": "Test your knowledge of GitHub Actions workflows, JavaScript actions, and Harness migration",
+  "questions": [
+    {
+      "text": "Which file format is used for GitHub Actions workflow definitions?",
+      "options": ["JSON", "XML", "YAML", "TOML"],
+      "correctAnswerIndex": 2
+    },
+    {
+      "text": "What is the purpose of the `actions/checkout@v4` action in a workflow?",
+      "options": [
+        "Checks out a specific version of GitHub Actions",
+        "Checks out your repository code so the workflow can access it",
+        "Validates the workflow syntax for errors",
+        "Logs out of the GitHub Actions environment"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "What does the `runs-on` parameter define in a GitHub Actions workflow?",
+      "options": [
+        "The version of GitHub Actions to use",
+        "The type of virtual machine to run the job on",
+        "The GitHub repository branch to execute on",
+        "The required CPU and memory resources"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "Which of the following correctly defines a GitHub Actions workflow trigger for pull requests to the main branch?",
+      "options": [
+        "```\non:\n  push:\n    branches: [ main ]\n```",
+        "```\non:\n  pull:\n    branches: [ main ]\n```",
+        "```\non:\n  pull_request:\n    branches: [ main ]\n```",
+        "```\non:\n  merge:\n    branches: [ main ]\n```"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "text": "When migrating from Harness to GitHub Actions, how can you ensure that your workflows are reusable and maintainable?",
+      "options": [
+        "Use GitHub Actions Marketplace for all actions",
+        "Create reusable workflows and composite actions for common tasks",
+        "Write all logic in a single workflow file to avoid complexity",
+        "Use third-party tools to convert Harness workflows directly to GitHub Actions"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "What is the purpose of the `env` key in a GitHub Actions workflow?",
+      "options": [
+        "To define environment variables for the workflow",
+        "To specify the environment in which the job runs",
+        "To set up the GitHub Actions environment",
+        "To define the version of Node.js to use"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "text": "Which of the following is NOT a valid way to define a job in a GitHub Actions workflow?",
+      "options": [
+        "Using `jobs:` followed by job names",
+        "Using `steps:` followed by step names",
+        "Using `runs:` followed by job names",
+        "Using `name:` followed by job names"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "text": "What is the purpose of the `with` keyword in a GitHub Actions step?",
+      "options": [
+        "To define input parameters for an action",
+        "To specify output parameters from an action",
+        "To set environment variables for a step",
+        "To define conditions for running a step"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "text": "How can you pass secrets to a GitHub Actions workflow?",
+      "options": [
+        "By defining them in the workflow file directly",
+        "By using GitHub Secrets and referencing them with `${{ secrets.SECRET_NAME }}`",
+        "By using environment variables defined in the repository settings",
+        "By using command-line arguments when triggering the workflow"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "What is a composite action in GitHub Actions?",
+      "options": [
+        "An action that combines multiple actions into one",
+        "An action that runs on multiple platforms simultaneously",
+        "An action that can be reused across different workflows",
+        "An action that requires multiple permissions to run"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "text": "Which of the following is a valid syntax for defining a step in a GitHub Actions workflow?",
+      "options": [
+        "```\nsteps:\n  - name: Checkout\n    uses: actions/checkout@v4\n```",
+        "```\nsteps:\n  - name: Checkout\n    run: actions/checkout@v4\n```",
+        "```\nsteps:\n  - name: Checkout\n    action: actions/checkout@v4\n```",
+        "```\nsteps:\n  - name: Checkout\n    script: actions/checkout@v4\n```"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "text": "What is the purpose of the `jobs.<job_id>.steps` section in a GitHub Actions workflow?",
+      "options": [
+        "To define the environment variables for the job",
+        "To specify the steps that will be executed in the job",
+        "To define the triggers for the job",
+        "To specify the resources required for the job"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "How can you run a job only if another job has completed successfully in GitHub Actions?",
+      "options": [
+        "By using the `if` condition with `success()`",
+        "By using the `needs` keyword to specify dependencies",
+        "By using the `continue-on-error` option",
+        "By using the `depends-on` keyword"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "What is the purpose of the `jobs.<job_id>.strategy` section in a GitHub Actions workflow?",
+      "options": [
+        "To define the environment variables for the job",
+        "To specify how to run multiple jobs in parallel or sequentially",
+        "To define the triggers for the job",
+        "To specify the resources required for the job"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "text": "Which of the following is a valid way to reference an output from a previous step in GitHub Actions?",
+      "options": [
+        "`${{ steps.step_id.outputs.output_name }}`",
+        "`${{ jobs.job_id.outputs.output_name }}`",
+        "`${{ steps.step_id.result }}`",
+        "`${{ jobs.job_id.result }}`"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "text": "What is the purpose of the `on: workflow_run` trigger in GitHub Actions?",
+      "options": [
+        "To trigger a workflow when another workflow completes",
+        "To trigger a workflow on a schedule",
+        "To trigger a workflow when a pull request is opened",
+        "To trigger a workflow when code is pushed to a branch"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "text": "How can you cache dependencies in GitHub Actions to speed up builds?",
+      "options": [
+        "By using the `cache` action from `actions/cache@v3`",
+        "By using the `save-cache` action from `actions/cache@v3`",
+        "By using environment variables to store dependencies",
+        "By using Docker images to cache dependencies"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "text": "What is the purpose of the `jobs.<job_id>.timeout-minutes` option in GitHub Actions?",
+      "options": [
+        "To set a timeout for each step in the",
+        "To set a timeout for the entire job",
+        "To set a timeout for the workflow",
+        "To set a timeout for the repository"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ]
+}

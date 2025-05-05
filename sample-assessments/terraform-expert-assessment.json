@@ -1,0 +1,257 @@
+{
+    "title": "Terraform Expert-Level Assessment",
+    "description": "Evaluate deep understanding of Terraform concepts, state management, modules, providers, and infrastructure automation best practices.",
+    "questions": [
+      {
+        "text": "You need to share Terraform state between teams securely and ensure locking during concurrent runs. What should you use?",
+        "options": [
+          "Local backend with file lock",
+          "Remote backend with S3 and DynamoDB for state locking",
+          "Git for state storage",
+          "Terraform Cloud free tier"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What is the purpose of a `terraform import` command?",
+        "options": [
+          "Creates a resource in Terraform and the cloud provider",
+          "Pulls remote resources into the state file for management",
+          "Initializes a Terraform workspace",
+          "Validates Terraform configuration files"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You are seeing frequent plan differences due to drift in provider-managed data sources. What’s a Terraform-native way to reduce false positives?",
+        "options": [
+          "Switch data sources to resources",
+          "Use lifecycle meta-argument `ignore_changes`",
+          "Move data sources into a separate workspace",
+          "Avoid using `terraform refresh`"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your team is developing a reusable module, but you want to validate its inputs before creation. What’s the correct approach?",
+        "options": [
+          "Use `depends_on` inside modules",
+          "Define `locals` for input preprocessing",
+          "Use `validation` blocks in `variable` declarations",
+          "Write a wrapper shell script"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You need to dynamically provision multiple EC2 instances with different tags per environment. What feature best supports this?",
+        "options": [
+          "Count with static values",
+          "Dynamic blocks with `for_each` on a map",
+          "Using separate workspaces",
+          "Multiple `resource` blocks with conditions"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You accidentally deleted a resource outside Terraform. What’s the best way to reconcile state?",
+        "options": [
+          "Manually edit `terraform.tfstate`",
+          "Use `terraform state rm` and then `terraform import`",
+          "Run `terraform apply`",
+          "Run `terraform destroy`"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your module needs to expose a list of subnet IDs from a VPC. How should this be handled?",
+        "options": [
+          "Use `output` variables with sensitive = true",
+          "Use a `data` block inside the module",
+          "Use `output` with `value = aws_subnet.*.id`",
+          "Reference resources directly from outside the module"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "What does the `terraform taint` command do?",
+        "options": [
+          "Marks a resource to be destroyed and recreated on the next apply",
+          "Forces a resource to be skipped",
+          "Deletes a resource from state",
+          "Refreshes a resource from the provider"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You are provisioning infrastructure for multiple environments (dev, staging, prod). What’s the Terraform best practice?",
+        "options": [
+          "Use `count` to conditionally create environments",
+          "Use different directories or workspaces per environment",
+          "Create a single configuration with environment variable overrides",
+          "Duplicate HCL for each environment"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What happens if a resource is removed from your configuration but still exists in the state?",
+        "options": [
+          "Terraform will delete it automatically",
+          "Terraform plan will show no changes",
+          "Terraform will destroy it on next apply",
+          "Terraform will throw an error"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to restrict provider versions to avoid breaking changes. How can you enforce this?",
+        "options": [
+          "Use a lock file",
+          "Use `required_providers` with version constraints",
+          "Set `provider` in each resource block",
+          "Use backend version locking"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You run `terraform plan` and see that Terraform wants to recreate a resource with no config changes. What’s the likely cause?",
+        "options": [
+          "You are missing a required output",
+          "The resource has immutable arguments changed outside of Terraform",
+          "Your provider version changed",
+          "You used a count that evaluates to 0"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You’re building a module that should work across AWS and Azure. What’s the recommended module design practice?",
+        "options": [
+          "Write provider-specific code in the same module",
+          "Use conditional logic for resources by provider",
+          "Split modules per provider and create a wrapper",
+          "Use `provider = var.cloud`"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "How can you prevent a specific resource from being destroyed by mistake?",
+        "options": [
+          "Set `prevent_destroy = true` in the lifecycle block",
+          "Enable deletion protection in the backend",
+          "Avoid running `terraform destroy`",
+          "Use `depends_on` on a null resource"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You want to move a resource from one module to another without destroying it. What’s the safest approach?",
+        "options": [
+          "Delete from old module and recreate in new one",
+          "Edit state using `terraform state mv`",
+          "Import to new module directly",
+          "Refactor the HCL and let Terraform handle the move"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What’s the purpose of the `.terraform.lock.hcl` file?",
+        "options": [
+          "Stores remote state configuration",
+          "Tracks variable overrides",
+          "Locks module and provider versions for reproducibility",
+          "Defines backend metadata"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to version control Terraform modules but ensure teams use approved versions. What’s the best practice?",
+        "options": [
+          "Use a private module registry and pin versions",
+          "Allow teams to fork modules freely",
+          "Distribute .zip archives",
+          "Embed module code in every repo"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You encounter a 'provider not found' error after cloning a Terraform project. What's the fix?",
+        "options": [
+          "Run `terraform validate`",
+          "Run `terraform providers sync`",
+          "Run `terraform init`",
+          "Install provider binaries manually"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "Which command shows resources tracked in state without making changes?",
+        "options": [
+          "`terraform show`",
+          "`terraform output`",
+          "`terraform graph`",
+          "`terraform providers`"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You want to trigger a rebuild only when a file content changes. What’s the Terraform-native way?",
+        "options": [
+          "Use `md5(file(...))` in a resource trigger",
+          "Use local-exec with checksum logic",
+          "Create a null_resource with timestamp",
+          "Use `terraform taint`"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "How does Terraform determine the order in which resources are created?",
+        "options": [
+          "Alphabetical order",
+          "Based on file order",
+          "Explicit `depends_on` and implicit references",
+          "Top-down evaluation"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to conditionally include a resource only if a variable is true. What’s the idiomatic approach?",
+        "options": [
+          "Wrap in an `if` statement",
+          "Use a dynamic block",
+          "Use `count = var.enabled ? 1 : 0`",
+          "Use `null` as a placeholder"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "What’s the difference between `count` and `for_each` in resource blocks?",
+        "options": [
+          "`count` requires string keys, `for_each` requires numeric keys",
+          "`count` works on maps, `for_each` does not",
+          "`for_each` allows mapping complex structures with identifiable keys",
+          "They behave identically"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "What is a practical use of `terraform data` sources?",
+        "options": [
+          "To create new cloud resources",
+          "To fetch existing infrastructure metadata",
+          "To define variables",
+          "To update Terraform itself"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You want to track which team provisioned each resource. What's the Terraform-native approach?",
+        "options": [
+          "Use `terraform workspace` names in logic",
+          "Tag resources using `locals` referencing a `team` variable",
+          "Create a team-specific backend",
+          "Manually append team names in resource names"
+        ],
+        "correctAnswerIndex": 1
+      }
+    ]
+  }
+  

@@ -1,0 +1,257 @@
+{
+    "title": "AWS Expert-Level Assessment",
+    "description": "Test your expertise in architecting, automating, and securing AWS infrastructure with scenario-driven questions.",
+    "questions": [
+      {
+        "text": "Your application runs on EC2 instances in an Auto Scaling group behind an Application Load Balancer. Occasionally, your users experience increased latency. How would you diagnose the root cause?",
+        "options": [
+          "Enable VPC Flow Logs",
+          "Use AWS CloudTrail to trace user activity",
+          "Enable ALB access logs and CloudWatch metrics to correlate latency patterns with requests",
+          "Switch to a Network Load Balancer for better performance"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You need to enforce encryption of data at rest for all objects uploaded to an S3 bucket. How can this be achieved with the least operational overhead?",
+        "options": [
+          "Enable S3 bucket versioning",
+          "Use client-side encryption in all upload scripts",
+          "Apply a bucket policy that denies unencrypted object uploads",
+          "Enable MFA delete"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "An organization wants to ensure that no IAM user can create resources outside the 'us-west-2' region. What is the most effective solution?",
+        "options": [
+          "Create service control policies (SCPs) at the organizational level",
+          "Manually restrict each IAM policy to 'us-west-2'",
+          "Use IAM Conditions with region keys on each resource policy",
+          "Tag resources and use IAM policies based on tags"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "A Lambda function in VPC takes a long time to initialize. What’s the most likely reason and fix?",
+        "options": [
+          "High cold start time due to package size",
+          "VPC configuration without NAT Gateway for outbound access",
+          "Lambda memory too low",
+          "Execution role lacks permissions"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your application stores session state in DynamoDB. Users report stale session data. What’s your next step?",
+        "options": [
+          "Enable DAX caching",
+          "Enable TTL on session table",
+          "Implement conditional writes with versioning",
+          "Switch to ElastiCache"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You’re building a multi-region active-active architecture for RDS. Which solution ensures data consistency with high availability?",
+        "options": [
+          "Enable cross-region replication",
+          "Use Aurora Global Database",
+          "Configure read replicas in each region",
+          "Deploy separate RDS instances with Route 53 latency routing"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "An EC2 instance fails to reach the internet despite having a public IP. What's your next diagnostic step?",
+        "options": [
+          "Check if the route table has a route to an internet gateway",
+          "Check IAM roles",
+          "Restart the instance",
+          "Change security group to allow HTTP"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You need to automate compliance checks for all AWS accounts in an organization. What's the best approach?",
+        "options": [
+          "Enable AWS Config rules in each account manually",
+          "Use AWS Organizations with delegated administrator for AWS Config and manage rules centrally",
+          "Write Lambda functions per region",
+          "Use CloudFormation templates to deploy custom scripts"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "A customer requests access to your private S3 content for a limited time without making it public. What do you use?",
+        "options": [
+          "IAM user credentials",
+          "Presigned URLs",
+          "Bucket policy allowing all traffic temporarily",
+          "S3 static website hosting"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You’ve containerized a microservice and want to deploy it on AWS with minimal management overhead. Which service is most suitable?",
+        "options": [
+          "ECS on EC2",
+          "EKS with Fargate",
+          "ECS with Fargate",
+          "EC2 with Docker installed"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "A developer accidentally terminated a production EC2 instance. What’s your best preventive measure going forward?",
+        "options": [
+          "Enable CloudTrail logging",
+          "Use termination protection on EC2 instances",
+          "Enable EC2 detailed monitoring",
+          "Move EC2 to a private subnet"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You want to roll out a new version of an application with zero downtime using CodeDeploy. What strategy should you use?",
+        "options": [
+          "All-at-once",
+          "In-place deployment",
+          "Blue/Green deployment",
+          "Linear deployment"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You’re designing a secure API backend on AWS. How do you authenticate and authorize users most effectively?",
+        "options": [
+          "Use API Gateway with Lambda authorizer",
+          "Use IAM roles attached to each user",
+          "Authenticate at the EC2 level",
+          "Use a CloudFront distribution"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "How can you ensure your CloudFormation stack doesn’t accidentally delete a critical resource?",
+        "options": [
+          "Enable drift detection",
+          "Use DeletionPolicy attribute in templates",
+          "Lock the stack",
+          "Tag the resource as 'protected'"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your team pushes code to a GitHub repository. You want an automated pipeline to deploy to AWS. What’s the cleanest solution?",
+        "options": [
+          "Use CodeDeploy with manual triggers",
+          "Connect GitHub Actions to AWS CodeDeploy or ECS",
+          "Use AWS Beanstalk and upload zip manually",
+          "Poll GitHub with a Lambda function"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What’s the most effective way to grant an EC2 instance access to an S3 bucket without storing credentials?",
+        "options": [
+          "Use Access Keys in instance user data",
+          "Assign an IAM role to the EC2 instance",
+          "Use instance profile with hardcoded credentials",
+          "Whitelist EC2 IPs in the bucket policy"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "How can you prevent an IAM user from accessing S3 except through a specific VPC endpoint?",
+        "options": [
+          "Use bucket ACLs",
+          "Use VPC endpoint policies and S3 bucket policy with aws:SourceVpc",
+          "Disable public access",
+          "Use signed cookies"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You have a Lambda function that processes messages from an SQS queue. What should you configure to ensure failed messages are not lost?",
+        "options": [
+          "Enable long polling",
+          "Use FIFO queue",
+          "Configure a dead-letter queue",
+          "Use SNS instead"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to deploy infrastructure consistently across multiple AWS accounts and regions. What’s the best tool for this?",
+        "options": [
+          "Use AWS CodeBuild in each region",
+          "Use CloudFormation StackSets",
+          "Use AWS CDK per account",
+          "Write Bash scripts"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What’s the preferred way to store database credentials securely in an ECS task?",
+        "options": [
+          "Hardcode in environment variables",
+          "Use a mounted EFS volume",
+          "Store in Secrets Manager and inject via task definition",
+          "Encode in base64"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "How do you enforce multi-factor authentication (MFA) across all IAM users?",
+        "options": [
+          "Attach an IAM policy to each user",
+          "Use an SCP that denies all actions unless MFA is used",
+          "Enable MFA in CloudTrail",
+          "Use IAM roles instead of users"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your EC2-based web app occasionally crashes under load. What's a scalable fix?",
+        "options": [
+          "Switch to t2.micro instances",
+          "Implement Auto Scaling with ELB",
+          "Add swap memory",
+          "Run health checks manually"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What AWS service should you use to schedule and orchestrate multi-step serverless workflows?",
+        "options": [
+          "Amazon SWF",
+          "AWS Step Functions",
+          "Lambda Destinations",
+          "Amazon MQ"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You need to detect and react to unauthorized resource changes in near real-time. What’s your best solution?",
+        "options": [
+          "AWS Config with CloudWatch Events",
+          "Enable S3 logging",
+          "Enable EC2 monitoring",
+          "Use Trusted Advisor"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "Which service helps detect potential security issues in your AWS account using machine learning?",
+        "options": [
+          "Amazon Macie",
+          "AWS WAF",
+          "AWS Shield",
+          "Amazon GuardDuty"
+        ],
+        "correctAnswerIndex": 3
+      }
+    ]
+  }
+  

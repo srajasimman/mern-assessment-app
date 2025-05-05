@@ -1,0 +1,257 @@
+{
+    "title": "Docker and Docker Compose Expert-Level Assessment",
+    "description": "Evaluate your expertise in building, securing, optimizing, and orchestrating containerized environments using Docker and Docker Compose.",
+    "questions": [
+      {
+        "text": "You need to reduce the size of a Docker image that includes unnecessary build tools. What’s the best practice?",
+        "options": [
+          "Use a base image with more tools",
+          "Use a multi-stage build to separate build and runtime environments",
+          "Use Docker volumes for build context",
+          "Manually remove files post-build"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your containers need to communicate over a custom isolated network. How do you ensure DNS-based service discovery using Docker Compose?",
+        "options": [
+          "Use external bridge networks",
+          "Use `links` in the Compose file",
+          "Define a custom bridge network and assign services to it",
+          "Assign static IPs manually"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want a container to restart automatically if it crashes, but not on system reboot. Which Compose restart policy is appropriate?",
+        "options": [
+          "`always`",
+          "`on-failure`",
+          "`unless-stopped`",
+          "`no`"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You observe high container startup times due to an application waiting for a DB service. What's the correct Compose-based fix?",
+        "options": [
+          "Use `depends_on` with `condition: service_healthy`",
+          "Increase `restart: always` retries",
+          "Hardcode a sleep in entrypoint script",
+          "Use volumes to sync readiness"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You want to debug a running container by running a shell inside it. What command should you use?",
+        "options": [
+          "`docker attach <container>`",
+          "`docker logs <container>`",
+          "`docker exec -it <container> /bin/sh`",
+          "`docker inspect <container>`"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "A containerized app needs access to host resources like systemd or kernel modules. What's the secure way to achieve this?",
+        "options": [
+          "Run in privileged mode",
+          "Use `--network host` and `--privileged`",
+          "Map only the required volumes and set required capabilities",
+          "Run it directly on the host"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to build an image and avoid using cached layers. What command achieves this?",
+        "options": [
+          "`docker build .`",
+          "`docker build --pull`",
+          "`docker build --no-cache .`",
+          "`docker build --force-rm`"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "What’s the most secure way to pass secrets into a running container?",
+        "options": [
+          "Use environment variables",
+          "Bake them into the image",
+          "Mount secrets via tmpfs using Docker secrets or volume mounts",
+          "Write them into the container entrypoint"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You need to ensure a volume persists across container re-creations in Docker Compose. What should you do?",
+        "options": [
+          "Define a bind mount",
+          "Use `volumes:` with a named volume in both the service and the top-level Compose file",
+          "Create the volume manually using `docker volume create`",
+          "Use `tmpfs` for the volume"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "How do you override the default Docker Compose file for CI/CD environments?",
+        "options": [
+          "Rename `docker-compose.override.yml`",
+          "Use `--file` multiple times with Compose",
+          "Copy the default file and edit",
+          "Use `docker-compose edit`"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You want to share environment variables across multiple services in a Compose file. What's the cleanest approach?",
+        "options": [
+          "Hardcode them into every service",
+          "Use an external `.env` file and reference in Compose",
+          "Use shell export before running Compose",
+          "Put variables in the Dockerfile"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Your containers need to run on the same host port. What's the Compose-native way to avoid port conflicts?",
+        "options": [
+          "Use `host` networking mode",
+          "Run containers on different nodes",
+          "Use reverse proxy with a shared front-end like Traefik or Nginx",
+          "Change ports manually every time"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "Which command allows you to remove all stopped containers, unused images, and volumes safely?",
+        "options": [
+          "`docker clean`",
+          "`docker rmi --all`",
+          "`docker system prune -a --volumes`",
+          "`docker-compose down --purge`"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to run a container with limited CPU and memory usage. What’s the correct approach?",
+        "options": [
+          "`docker run --cpus and --memory` flags",
+          "Edit the Dockerfile to specify limits",
+          "Use Docker Compose with `ulimits`",
+          "Use a base image with limited footprint"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You want to mount a host directory inside a container read-only. How do you do it in Docker Compose?",
+        "options": [
+          "Use `volumes: [./data:/app/data]`",
+          "Use `volumes: [./data:/app/data:ro]`",
+          "Use `readOnly: true` in Compose",
+          "Use tmpfs instead"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "Which Compose file version introduced the concept of `configs` and `secrets` for Swarm mode?",
+        "options": [
+          "2.1",
+          "2.4",
+          "3.1",
+          "3.3"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "What is the impact of running `docker-compose up --build`?",
+        "options": [
+          "Starts containers and ignores build context",
+          "Builds services and starts containers",
+          "Deletes and recreates all volumes",
+          "Only builds containers without starting them"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You want to check which layer of a Docker image caused the cache to break. What should you use?",
+        "options": [
+          "`docker inspect`",
+          "`docker history <image>`",
+          "`docker diff`",
+          "`docker logs <build>`"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "What’s the role of `.dockerignore` during image build?",
+        "options": [
+          "Controls which files are deleted after build",
+          "Specifies files to ignore when running containers",
+          "Reduces context size by ignoring files during `docker build`",
+          "Hides files from logs"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You observe file permission issues when using named volumes with non-root users. What’s a reliable fix?",
+        "options": [
+          "Use `chown` during container runtime",
+          "Use root inside containers",
+          "Use a `VOLUME` instruction in Dockerfile",
+          "Use `init` containers to fix permissions"
+        ],
+        "correctAnswerIndex": 0
+      },
+      {
+        "text": "You want to use Compose to scale your app to 5 containers. What’s the proper command?",
+        "options": [
+          "`docker-compose run --replicas 5`",
+          "`docker-compose scale app=5` (legacy)`",
+          "`docker-compose up --scale app=5`",
+          "`docker run --scale 5`"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "What happens if you bind mount a host path that doesn’t exist into a container?",
+        "options": [
+          "Container fails to start",
+          "Docker creates the host path as an empty directory",
+          "An error is thrown at runtime",
+          "The mount is ignored"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "How do you apply a health check in a Dockerfile?",
+        "options": [
+          "`EXPOSE 8080 HEALTHCHECK`",
+          "`RUN healthcheck.sh`",
+          "`HEALTHCHECK CMD curl --fail http://localhost || exit 1`",
+          "`CMD ['check-health']`"
+        ],
+        "correctAnswerIndex": 2
+      },
+      {
+        "text": "You want to change a container’s network to use an external Docker network. What’s required in Compose?",
+        "options": [
+          "Use `networks: default`",
+          "Declare the external network under `networks` and set `external: true`",
+          "Use `--network=host`",
+          "Add `--link` manually"
+        ],
+        "correctAnswerIndex": 1
+      },
+      {
+        "text": "You want to enable container-to-container encryption in a production cluster. What’s your approach?",
+        "options": [
+          "Use Docker Swarm overlay networks with encryption enabled",
+          "Use `--tls` in Compose",
+          "Configure HTTPS inside the containers",
+          "Use Docker Desktop Kubernetes"
+        ],
+        "correctAnswerIndex": 0
+      }
+    ]
+  }
+  

@@ -1,0 +1,46 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+[*.md]
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.json]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{js,jsx,ts,tsx}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{css,scss,less}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{html,htm}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true

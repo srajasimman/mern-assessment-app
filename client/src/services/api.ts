@@ -42,6 +42,12 @@ export const deleteAssessment = async (id: string) => {
   return response.data;
 };
 
+// Import assessment from JSON
+export const importAssessment = async (assessmentData: any): Promise<{ success: boolean; assessment: Assessment }> => {
+  const response = await axios.post(`${API_URL}/assessments/import`, assessmentData);
+  return response.data;
+};
+
 // Response APIs
 export const submitResponse = async (responseData: { assessmentId: string; answers: number[]; name: string; email: string }) => {
   const response = await api.post('/responses', responseData);

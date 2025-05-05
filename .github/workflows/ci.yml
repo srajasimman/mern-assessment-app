@@ -1,5 +1,5 @@
 name: Build and Push Docker Images
-run-name: Build and Push Docker Images for ${{ github.event_name == 'push' && github.ref_type == 'tag' && github.ref_name || github.sha }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

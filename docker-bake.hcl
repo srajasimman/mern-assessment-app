@@ -24,7 +24,7 @@ group "default" {
 
 target "server" {
   context = "./server"
-  dockerfile = "Dockerfile.prod"
+  dockerfile = "Dockerfile"
   tags = [
     "${REGISTRY_REPO}/${APP_NAME}-server:${VERSION}",
     "${REGISTRY_REPO}/${APP_NAME}-server:latest",
@@ -36,7 +36,7 @@ target "server" {
 
 target "client" {
   context = "./client"
-  dockerfile = "Dockerfile.prod"
+  dockerfile = "Dockerfile"
   tags = [
     "${REGISTRY_REPO}/${APP_NAME}-client:${VERSION}",
     "${REGISTRY_REPO}/${APP_NAME}-client:latest",

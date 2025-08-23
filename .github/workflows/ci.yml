@@ -19,7 +19,7 @@ permissions:
 
 env:
   APP_NAME: assessment-platform
-  REGISTRY_REPO: ghcr.io/${{ github.repository }}
+  REGISTRY_REPO: ghcr.io/${{ github.repository_owner }}
   VERSION: ${{ github.event_name == 'push' && github.ref_type == 'tag' && github.ref_name || github.sha }}
   REACT_APP_API_URL: http://localhost:5000/api
   MONGODB_URI: mongodb://mongodb:27017/assessment-platform

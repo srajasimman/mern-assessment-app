@@ -1,10 +1,10 @@
-name: assessment-platform
+name: ${APP_NAME:-assessment-platform}
 
 services:
   # MongoDB Service
   mongodb:
     image: mongo:latest
-    container_name: assessment-platform-mongodb
+    container_name: ${APP_NAME:-assessment-platform}-mongodb
     restart: always
     volumes:
       - mongodb-data:/data/db
@@ -22,20 +22,20 @@ services:
           cpus: "1"
           memory: 1G
 
-  # Node.js Server Service
+  # Bun.js Server Service
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile.prod
-    image: srajasimman/assessment-platform-server:latest
-    container_name: assessment-platform-server
+      dockerfile: Dockerfile
+    image: ${REGISTRY_REPO:-srajasimman}/${APP_NAME:-assessment-platform}-server:${SERVER_VERSION:-latest}
+    container_name: ${APP_NAME:-assessment-platform}-server
     restart: always
     ports:
       - "5000:5000"
     environment:
       - NODE_ENV=production
       - PORT=5000
-      - MONGODB_URI=mongodb://assessment-platform-mongodb:27017/assessment-platform
+      - MONGODB_URI=mongodb://${APP_NAME:-assessment-platform}-mongodb:27017/${APP_NAME:-assessment-platform}
     depends_on:
       - mongodb
     networks:
@@ -55,9 +55,9 @@ services:
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile.prod
-    image: srajasimman/assessment-platform-client:latest
-    container_name: assessment-platform-client
+      dockerfile: Dockerfile
+    image: ${REGISTRY_REPO:-srajasimman}/${APP_NAME:-assessment-platform}-client:${CLIENT_VERSION:-latest}
+    container_name: ${APP_NAME:-assessment-platform}-client
     restart: always
     ports:
       - "80:80"
@@ -65,7 +65,7 @@ services:
     depends_on:
       - server
     networks:
-      - assessment-platform-network
+      - ${APP_NAME:-assessment-platform}-network
     logging:
       driver: "json-file"
       options:

@@ -1,6 +1,6 @@
 # Assessment Platform
 
-A full-stack web application built using the MERN stack (MongoDB, Express, React, Node.js) that enables administrators to create assessments with multiple-choice questions, and users to take these assessments via unique links and view their results upon completion.
+A full-stack web application built using the MERN stack (MongoDB, Express, React, Bun.js) that enables administrators to create assessments with multiple-choice questions, and users to take these assessments via unique links and view their results upon completion.
 
 ## Features
 
@@ -21,14 +21,14 @@ A full-stack web application built using the MERN stack (MongoDB, Express, React
 This application follows a modern containerized architecture:
 
 - React SPA client served via Webpack (dev) or Nginx (prod)
-- Express.js backend with RESTful API endpoints
+- Express.js backend with RESTful API endpoints powered by Bun.js runtime
 - MongoDB database for persistent storage
 - Docker containers for both development and production environments
 
 ## Tech Stack
 
 - **Frontend**: React.js with TypeScript, Material UI
-- **Backend**: Node.js with Express.js
+- **Backend**: Bun.js with Express.js
 - **Database**: MongoDB with Mongoose ODM
 - **State Management**: React Hooks
 - **Routing**: React Router v6
@@ -40,8 +40,7 @@ This application follows a modern containerized architecture:
 
 ### Prerequisites
 
-- Node.js (v14+)
-- npm or yarn
+- Bun.js (v1.1+) - install from [bun.sh](https://bun.sh)
 - MongoDB (local instance or MongoDB Atlas)
 - Docker and Docker Compose (for containerized deployment)
 
@@ -55,7 +54,7 @@ This application follows a modern containerized architecture:
 
 2. Install dependencies for the server, client, and root:
    ```
-   npm run install-all
+   bun run install-all
    ```
 
 3. Configure environment variables:
@@ -65,7 +64,7 @@ This application follows a modern containerized architecture:
      MONGODB_URI=mongodb://localhost:27017/assessment-platform
      NODE_ENV=development
      ```
-   
+
    - The client `.env` file is already set up with:
      ```
      REACT_APP_API_URL=http://localhost:5000/api
@@ -77,22 +76,22 @@ This application follows a modern containerized architecture:
 
 - Development mode (with hot reloading for both client and server):
   ```
-  npm run dev
+  bun run dev
   ```
 
 - Production mode:
   ```
-  npm start
+  bun start
   ```
 
 - Run server only:
   ```
-  npm run server
+  bun run server
   ```
 
 - Run client only:
   ```
-  npm run client
+  bun run client
   ```
 
 #### Docker Deployment

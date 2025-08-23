@@ -143,3 +143,6 @@ vite.config.ts.timestamp-*
 result
 .nix
 .direnv/
+
+# DB Backups
+backups/

@@ -8,8 +8,18 @@ on:
   push:
     branches: [ main ]
     tags: [ 'v*.*.*' ]
+    paths:
+      - 'server/**'
+      - 'client/**'
+      - 'docker-compose.yml'
+      - 'docker-bake.hcl'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'server/**'
+      - 'client/**'
+      - '.github/workflows/ci.yml'
   # Allow manual trigger
   workflow_dispatch:
 

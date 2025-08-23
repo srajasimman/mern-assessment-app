@@ -19,7 +19,7 @@ permissions:
 
 env:
   APP_NAME: assessment-platform
-  REGISTRY_REPO: ghcr.io/${{ github.repository_owner }}
+  REGISTRY_REPO: docker.io/${{ github.repository_owner }}
   VERSION: ${{ github.event_name == 'push' && github.ref_type == 'tag' && github.ref_name || github.sha }}
   REACT_APP_API_URL: http://localhost:5000/api
   MONGODB_URI: mongodb://mongodb:27017/assessment-platform
@@ -34,12 +34,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to GitHub Container Registry
+      - name: Log in to Docker Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: docker.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         uses: docker/bake-action@v6

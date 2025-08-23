@@ -11,6 +11,7 @@ show_help() {
   echo "Usage: ./setup.sh [command]"
   echo ""
   echo "Commands:"
+  echo "  build               Build all services (Server, Client)"
   echo "  start               Start all services (MongoDB, Server, Client)"
   echo "  stop                Stop all services"
   echo "  restart             Restart all services"
@@ -20,7 +21,7 @@ show_help() {
   echo "  mongodb-logs        Show logs from MongoDB only"
   echo "  clean               Stop and remove containers, networks, volumes, and images"
   echo "  status              Show status of containers"
-  echo "  setup               Initial setup (install dependencies for all services)"
+  echo "  init                Initial setup (install dependencies for all services)"
   echo "  backup-db           Create a backup of the MongoDB database"
   echo "  restore-db          Restore the MongoDB database from a backup file"
   echo "  import-assessments  Import assessments from a JSON file"
@@ -29,7 +30,7 @@ show_help() {
 }
 
 # Function to install dependencies
-setup() {
+init() {
   echo -e "${YELLOW}Installing dependencies for root...${NC}"
   bun install
   
@@ -114,8 +115,14 @@ import_assessments() {
 
 # Main script logic
 case "$1" in
+  build)
+    echo -e "${YELLOW}Building all services...${NC}"
+    docker bake
+    echo -e "${GREEN}All services built successfully!${NC}"
+    ;;
   start)
     echo -e "${YELLOW}Starting all services...${NC}"
+    docker bake > /dev/null 2>&1
     docker compose up -d
     echo -e "${GREEN}All services started!${NC}"
     echo -e "${GREEN}Client: http://localhost:3000${NC}"
@@ -156,8 +163,8 @@ case "$1" in
     echo -e "${YELLOW}Container status:${NC}"
     docker compose ps
     ;;
-  setup)
-    setup
+  init)
+    init
     ;;
   backup-db)
     backup_db

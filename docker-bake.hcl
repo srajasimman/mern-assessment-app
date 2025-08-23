@@ -3,7 +3,7 @@ variable "APP_NAME" {
 }
 
 variable "REGISTRY_REPO" {
-  default = "srajasimman"
+  default = "ghcr.io/srajasimman"
 }
 
 variable "VERSION" {

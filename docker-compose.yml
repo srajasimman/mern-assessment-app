@@ -60,8 +60,7 @@ services:
     container_name: ${APP_NAME:-assessment-platform}-client
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "3000:3000"
     depends_on:
       - server
     networks:

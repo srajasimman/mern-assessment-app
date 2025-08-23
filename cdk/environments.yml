@@ -1,0 +1,56 @@
+# CDK Environment Configuration
+
+# Development Environment
+# Optimized for cost and development speed
+development:
+  database:
+    instanceClass: db.t3.micro
+    multiAz: false
+    backupRetentionDays: 7
+    deletionProtection: false
+  appRunner:
+    cpu: "0.25 vCPU"
+    memory: "0.5 GB"
+  cloudFront:
+    priceClass: "PriceClass_100"  # North America and Europe only
+
+# Staging Environment
+# Similar to production but with reduced capacity
+staging:
+  database:
+    instanceClass: db.t3.small
+    multiAz: false
+    backupRetentionDays: 14
+    deletionProtection: false
+  appRunner:
+    cpu: "0.5 vCPU"
+    memory: "1 GB"
+  cloudFront:
+    priceClass: "PriceClass_200"  # North America, Europe, Asia, Middle East, and Africa
+
+# Production Environment
+# High availability and performance configuration
+production:
+  database:
+    instanceClass: db.t3.small
+    multiAz: true
+    backupRetentionDays: 30
+    deletionProtection: true
+  appRunner:
+    cpu: "1 vCPU"
+    memory: "2 GB"
+  cloudFront:
+    priceClass: "PriceClass_All"  # All edge locations
+
+# Common configuration for all environments
+common:
+  region: us-east-1
+  vpcCidr: "10.0.0.0/16"
+  maxAzs: 2
+
+# Domain configuration (optional)
+# Uncomment and modify for custom domain setup
+# domain:
+#   name: "app.example.com"
+#   hostedZoneId: "Z1234567890"
+#   certificateRegion: "us-east-1"  # Must be us-east-1 for CloudFront

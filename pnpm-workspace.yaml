@@ -1,3 +1,7 @@
 packages:
-  - 'server'
-  - 'client'
+  - server
+  - client
+
+ignoredBuiltDependencies:
+  - core-js
+  - core-js-pure

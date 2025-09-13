@@ -4,13 +4,13 @@
   "description": "MERN Stack Assessment Platform",
   "main": "index.js",
   "scripts": {
+    "install-all": "pnpm install",
     "start": "concurrently \"pnpm --filter server start\" \"pnpm --filter client start\"",
     "server": "pnpm --filter server start",
     "server:dev": "pnpm --filter server dev",
     "client": "pnpm --filter client start",
-    "mongodb": "docker run --volume mongo-data:/data/db -p 27017:27017 --name mongodb mongo:latest",
-    "dev": "concurrently \"pnpm mongodb\" \"pnpm --filter server dev\" \"pnpm --filter client start\"",
-    "install-all": "pnpm install"
+    "mongodb": "docker run --volume mongo-data:/data/db -p 27017:27017 --name assessment-platform-mongodb mongo:latest",
+    "dev": "concurrently \"pnpm mongodb\" \"pnpm --filter server dev\" \"pnpm --filter client start\""
   },
   "keywords": [
     "mern",

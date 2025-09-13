@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 WORKDIR /usr/src/app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10.16.0 --activate
 
 # Copy package files and install dependencies
 COPY package.json pnpm-lock.yaml* ./
@@ -20,7 +20,7 @@ FROM node:20-alpine
 ENV NODE_ENV=production
 
 # Install pnpm in production stage
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10.16.0 --activate
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \

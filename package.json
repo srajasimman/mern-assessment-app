@@ -4,12 +4,12 @@
   "description": "MERN Stack Assessment Platform",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"bun run server\" \"bun run client\"",
-    "server": "bun start --cwd server",
-    "server:dev": "bun run dev --cwd server",
-    "client": "bun start --cwd client",
-    "dev": "concurrently \"bun run server:dev\" \"bun run client\"",
-    "install-all": "bun install && bun install --cwd server && bun install --cwd client"
+    "start": "concurrently \"pnpm --filter server start\" \"pnpm --filter client start\"",
+    "server": "pnpm --filter server start",
+    "server:dev": "pnpm --filter server dev",
+    "client": "pnpm --filter client start",
+    "dev": "concurrently \"pnpm --filter server dev\" \"pnpm --filter client start\"",
+    "install-all": "pnpm install"
   },
   "keywords": [
     "mern",

@@ -1,16 +1,19 @@
-FROM oven/bun:1.1.42-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 # Copy package files and install dependencies
-COPY package.json bun.lockb* ./
-RUN bun install --frozen-lockfile
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install --frozen-lockfile
 
 # Copy application code
 COPY . .
 
 # Build the application
-RUN bun run build
+RUN pnpm run build
 
 # -----------------------------------------------
 # Production stage using Nginx

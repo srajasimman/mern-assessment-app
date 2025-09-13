@@ -44,22 +44,23 @@ This application follows modern containerized microservices architecture:
 
 Before you begin, ensure you have the following installed:
 
-- **[Bun.js](https://bun.sh)** (v1.1 or higher) - Fast JavaScript runtime and package manager
+- **[Node.js](https://nodejs.org)** (v18.0 or higher) - JavaScript runtime
+- **[pnpm](https://pnpm.io)** (v8.0 or higher) - Fast, disk space efficient package manager
 - **[MongoDB](https://www.mongodb.com/try/download/community)** (v5.0+) or MongoDB Atlas account
 - **[Docker](https://www.docker.com/get-started)** and **Docker Compose** (for containerized deployment)
 - **Git** for version control
 
-### Installing Bun.js
+### Installing pnpm
 
 ```bash
-# On macOS/Linux
-curl -fsSL https://bun.sh/install | bash
+# On macOS/Linux/Windows
+npm install -g pnpm
 
-# On Windows
-powershell -c "irm bun.sh/install.ps1 | iex"
+# Or using Homebrew on macOS
+brew install pnpm
 
 # Verify installation
-bun --version
+pnpm --version
 ```
 
 ## 🚀 Quick Start
@@ -77,7 +78,7 @@ Use our convenient setup script to install all dependencies:
 
 ```bash
 # Install all dependencies for root, server, and client
-bun run install-all
+pnpm run install-all
 
 # Or install manually:
 bun install                    # Root dependencies
@@ -109,11 +110,11 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 ```bash
 # Start both client and server with hot reloading
-bun run dev
+pnpm run dev
 
 # Or start them individually:
-bun run server    # Start server only (http://localhost:5000)
-bun run client    # Start client only (http://localhost:3000)
+pnpm run server    # Start server only (http://localhost:5000)
+pnpm run client    # Start client only (http://localhost:3000)
 ```
 
 🎉 **That's it!** Your application should now be running:
@@ -122,13 +123,13 @@ bun run client    # Start client only (http://localhost:3000)
 
 | Command | Description |
 |---------|-------------|
-| `bun run dev` | Start both client and server in development mode |
-| `bun run server` | Start server only with hot reloading |
-| `bun run server:dev` | Start server in development mode |
-| `bun run client` | Start client development server |
-| `bun start` | Start both services in production mode |
-| `bun run install-all` | Install dependencies for all projects |
-| `bun run build` | Build client for production |
+| `pnpm run dev` | Start both client and server in development mode |
+| `pnpm run server` | Start server only with hot reloading |
+| `pnpm run server:dev` | Start server in development mode |
+| `pnpm run client` | Start client development server |
+| `pnpm start` | Start both services in production mode |
+| `pnpm run install-all` | Install dependencies for all projects |
+| `pnpm --filter client run build` | Build client for production |
 
 ## 🐳 Docker Deployment
 
@@ -274,21 +275,21 @@ curl -X POST http://localhost:5000/api/responses \
 
 ## 🚀 Performance & Benefits
 
-### Why Bun.js?
+### Why pnpm?
 
-| Feature | Bun.js | Node.js |
-|---------|---------|---------|
-| **Package Installation** | ⚡ Up to 20x faster | ⏳ Standard speed |
-| **Runtime Performance** | 🚀 4x faster startup | 📈 Baseline |
-| **Memory Usage** | 💾 Lower memory footprint | 📊 Higher usage |
-| **TypeScript Support** | ✅ Built-in, no config | 🔧 Requires setup |
-| **Watch Mode** | 🔄 Built-in `--watch` | 📦 Requires nodemon |
+| Feature | pnpm | npm |
+|---------|------|-----|
+| **Package Installation** | ⚡ Up to 2x faster | ⏳ Standard speed |
+| **Disk Space** | 💾 Symlinked storage, saves ~70% space | 📊 Duplicated packages |
+| **Security** | 🔒 Strict dependency isolation | 🌐 Flat node_modules |
+| **Monorepo Support** | ✅ Built-in workspace support | 🔧 Requires workspaces config |
+| **Dependency Management** | 📦 Strict by default | 📈 Hoisting issues possible |
 
 ### Benchmarks
-- **Cold Start**: ~300ms vs ~1.2s (Node.js)
-- **Package Install**: ~2s vs ~15s (npm)
-- **Memory Usage**: ~40MB vs ~65MB baseline
-- **API Response Time**: ~15ms vs ~25ms average
+- **Package Install**: ~30% faster than npm
+- **Disk Usage**: Up to 70% less space used
+- **CI/CD Performance**: Faster cache hits and installs
+- **Workspace Management**: Superior monorepo handling
 
 ## 🛠️ Troubleshooting
 
@@ -300,8 +301,8 @@ curl -X POST http://localhost:5000/api/responses \
 lsof -ti:3000,5000 | xargs kill -9
 
 # Or use different ports
-PORT=3001 bun run client
-PORT=5001 bun run server
+PORT=3001 pnpm run client
+PORT=5001 pnpm run server
 ```
 
 **MongoDB Connection Issues:**
@@ -316,24 +317,24 @@ docker run --name mongodb -d -p 27017:27017 mongo:latest
 brew services list | grep mongo
 ```
 
-**Bun Installation Issues:**
+**pnpm Installation Issues:**
 ```bash
-# Reinstall Bun
-curl -fsSL https://bun.sh/install | bash
+# Reinstall pnpm
+npm install -g pnpm
 
-# Clear Bun cache
-bun pm cache rm
+# Clear pnpm cache
+pnpm store prune
 
 # Verify installation
-bun --version
+pnpm --version
 ```
 
 **Build Errors:**
 ```bash
 # Clear all node_modules and reinstall
 rm -rf node_modules server/node_modules client/node_modules
-rm -f bun.lockb server/bun.lockb client/bun.lockb
-bun run install-all
+rm -f pnpm-lock.yaml server/pnpm-lock.yaml client/pnpm-lock.yaml
+pnpm run install-all
 ```
 
 ## 🔮 Roadmap & Future Enhancements

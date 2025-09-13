@@ -22,7 +22,7 @@ services:
           cpus: "1"
           memory: 1G
 
-  # Bun.js Server Service
+  # Node.js + pnpm Server Service
   server:
     build:
       context: ./server

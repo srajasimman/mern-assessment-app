@@ -32,13 +32,7 @@ show_help() {
 # Function to install dependencies
 init() {
   echo -e "${YELLOW}Installing dependencies for root...${NC}"
-  bun install
-  
-  echo -e "${YELLOW}Installing dependencies for server...${NC}"
-  cd server && bun install && cd ..
-  
-  echo -e "${YELLOW}Installing dependencies for client...${NC}"
-  cd client && bun install && cd ..
+  pnpm install
   
   echo -e "${GREEN}Setup completed successfully!${NC}"
 }
@@ -104,7 +98,7 @@ import_assessments() {
   fi
 
   echo -e "${YELLOW}Importing assessments from file: $ASSESSMENT_FILE...${NC}"
-  bun import-assessment.js "$ASSESSMENT_FILE"
+  node import-assessment.js "$ASSESSMENT_FILE"
   if [ $? -eq 0 ]; then
     echo -e "${GREEN}Assessments imported successfully from $ASSESSMENT_FILE${NC}"
   else

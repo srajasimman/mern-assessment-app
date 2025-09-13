@@ -1,44 +1,50 @@
-FROM oven/bun:1.1.42-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@10.16.0 --activate
+
 # Copy package files and install dependencies
-COPY package.json bun.lockb* ./
-RUN bun install --frozen-lockfile --production
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install --no-frozen-lockfile --prod
 
 # Copy application code
 COPY . .
 
 # -----------------------------------------------
 # Production stage
-FROM oven/bun:1.1.42-alpine
+FROM node:20-alpine
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production
 
+# Install pnpm in production stage
+RUN corepack enable && corepack prepare pnpm@10.16.0 --activate
+
 # Create non-root user for security
-RUN addgroup -g 1001 -S bunjs && \
-    adduser -S -u 1001 -G bunjs bunuser
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S -u 1001 -G nodejs nodeuser
 
 # Create app directory
 WORKDIR /usr/src/app
 
 # Copy built artifacts from builder stage
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/package.json ./
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/bun.lockb* ./
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/node_modules ./node_modules
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/server.js ./
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/models ./models
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/routes ./routes
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/controllers ./controllers
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/middleware ./middleware
-COPY --from=builder --chown=bunuser:bunjs /usr/src/app/config ./config
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/package.json ./
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/pnpm-lock.yaml* ./
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/node_modules ./node_modules
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/server.js ./
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/models ./models
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/routes ./routes
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/controllers ./controllers
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/middleware ./middleware
+COPY --from=builder --chown=nodeuser:nodejs /usr/src/app/config ./config
 
 # Switch to non-root user
-USER bunuser
+USER nodeuser
 
 # Expose port the application will run on
 EXPOSE 5000
 
 # Command to run the application
-CMD ["bun", "run", "server.js"]
+CMD ["node", "server.js"]

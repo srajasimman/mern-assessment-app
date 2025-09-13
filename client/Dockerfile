@@ -30,5 +30,5 @@ COPY --from=builder /usr/src/app/build /usr/local/openresty/nginx/html
 # Expose port 80
 EXPOSE 80
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start OpenResty (Nginx)
+CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]

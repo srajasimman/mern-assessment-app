@@ -1,13 +1,15 @@
-FROM node:20-alpine AS builder
-
-WORKDIR /usr/src/app
+ARG NODE_VERSION=20
+FROM node:${NODE_VERSION}-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@10.16.0 --activate
+WORKDIR /usr/src/app
 
 # Copy package files and install dependencies
 COPY package.json pnpm-lock.yaml* ./
-RUN pnpm install --no-frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --no-frozen-lockfile
 
 # Copy application code
 COPY . .
